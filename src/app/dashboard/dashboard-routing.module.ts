@@ -4,7 +4,7 @@ import { DashboardHomeComponent } from './home/dashboard.home.component';
 import { CanActivateGuard } from '../service/can_activate_guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardHomeComponent , canActivate: [CanActivateGuard] }
+  { path: 'dashboard', component: DashboardHomeComponent }
 ];
 
 @NgModule({
