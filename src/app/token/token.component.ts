@@ -26,7 +26,6 @@ export class TokenComponent implements OnInit {
 
   readToken() {
     console.log("Vault token to use is: " + this.model.token);
-    this.tokenService.tokenLogin(this.model.token, this.model.addr);
   }
 
   testConnection() {
@@ -38,6 +37,8 @@ export class TokenComponent implements OnInit {
         data => {
           console.log("Status: " + data);
           this.buttonLabel = "Connect";
+          localStorage.setItem("vaultToken", this.model.token);
+          localStorage.setItem("vaultAddr", this.model.addr);
           this.ready = true;
         },
         error => {
