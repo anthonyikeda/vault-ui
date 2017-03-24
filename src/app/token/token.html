@@ -1,0 +1,16 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2>Vault Token</h2>
+  <form name="form" (ngSubmit)="f.form.valid && testConnection()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="vaultToken">Token</label>
+      <input type="text" class="form-control" name="vaultToken" [(ngModel)]="model.token" #vaultToken="ngModel" required>
+      <div *ngIf="f.submitted && !vaultToken.valid" class="help-block">Token is required to access Vault</div>
+    </div>
+    <div class="form-group">
+      <label for="vaultAddr">Vault Server Address</label>
+      <input type="text" class="form-control" name="vaultAddr" [(ngModel)]="model.addr" #vaultAddr="ngModel" required placeholder="http://192.168.99.100:8200/">
+      <div *ngIf="f.submitted && !vaultToken.valid" class="helo-block">Must be a valid server address</div>
+    </div>
+    <button [disabled]="loading" class="btn btn-primary">{{ buttonLabel }}</button>
+  </form>
+</div>

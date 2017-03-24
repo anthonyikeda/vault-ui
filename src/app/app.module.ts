@@ -8,12 +8,17 @@ import { AppRoutingModule } from './app.routing';
 import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { TokenComponent } from './token/token.component';
+
 import { AuthService } from './service/auth.service';
+import { TokenService } from './token/token.service';
+import { VaultService } from './service/vault.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TokenComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,7 @@ import { AuthService } from './service/auth.service';
     AppRoutingModule,
     DashboardRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TokenService, VaultService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
