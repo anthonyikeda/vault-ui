@@ -13,6 +13,8 @@ export class TokenComponent implements OnInit {
   returnUrl: string;
   loading = false;
   buttonLabel: string = "Test Connection";
+  ready = false;
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private tokenService: TokenService,
@@ -28,14 +30,21 @@ export class TokenComponent implements OnInit {
   }
 
   testConnection() {
-    this.vaultService.testVaultConnection(this.model.token, this.model.addr).subscribe(
-      data => {
-        console.log("Status: " + data);
-        this.buttonLabel = "Connect";
-      },
-      error => {
-        console.log(error);
-      });
+    if( this.ready ) {
+      // We have the ability to connect!
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.vaultService.testVaultConnection(this.model.token, this.model.addr).subscribe(
+        data => {
+          console.log("Status: " + data);
+          this.buttonLabel = "Connect";
+          this.ready = true;
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error;
+        });
+    }
 
   }
 }

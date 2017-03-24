@@ -18,7 +18,7 @@ export class VaultService {
 
   private extractData(response: Response) {
     let body = response.json();
-    console.log("Helath status is: " + body);
+    console.log("Health status is: " + JSON.stringify(body));
     return body;
   }
 }
